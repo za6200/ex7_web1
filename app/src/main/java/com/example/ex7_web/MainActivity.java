@@ -24,12 +24,19 @@ public class MainActivity extends AppCompatActivity {
         UrlEditText = findViewById(R.id.urlEditText);
         LoadButton = findViewById(R.id.loadButton);
 
-
+        wV1.getSettings().setJavaScriptEnabled(true);
+        wV1.setWebViewClient(new MyWebViewClient());
     }
 
     public void btn1(View view) {
         web=UrlEditText.getText().toString();
         wV1.loadUrl(web);
-    }
+     }
+     private class MyWebViewClient extends WebViewClient{
+        public boolean shouldOverrideUrlLoading(WebView view, String url){
+            view.loadUrl(url);
+            return true;
+        }
+     }
 
 }
